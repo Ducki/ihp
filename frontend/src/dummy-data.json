@@ -1,0 +1,36 @@
+[
+  {
+    "siteName": "heise",
+    "items": [
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      },
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      },
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      }
+    ]
+  },
+  {
+    "siteName": "golem",
+    "items": [
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      },
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      },
+      {
+        "link": "lorem ipsum LINK",
+        "title": "string TITLE"
+      }
+    ]
+  }
+]
