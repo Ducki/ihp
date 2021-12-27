@@ -1,4 +1,3 @@
-
 namespace backend.Model
 {
     public partial class Feed
