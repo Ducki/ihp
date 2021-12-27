@@ -14,11 +14,11 @@ function App() {
 
     return (
         <div>
-            <div className="flex justify-between">
+            <div className="flex flex-wrap justify-between">
 
-                {feeds
+                { feeds
                     ? (
-                        feeds.map((f, i) => <Feed key={i} feed={f}/>)
+                        feeds.map((f, i) => <Feed key={ i } feed={ f } />)
                     )
                     : "Loading …"
                 }

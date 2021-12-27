@@ -14,3 +14,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a:link {
+@apply text-blue-900 no-underline ;
+}
+a:visited {
+
+}
+a:hover {
+@apply text-blue-700 underline;
+}
+a:active {
+
+}

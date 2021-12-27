@@ -3,12 +3,12 @@ import { TFeed } from "../utils";
 
 function Feed(props: { feed: TFeed }) {
     return (
-        <div className="m-3 p-3 border rounded grow">
+        <div className="m-3 p-3 border rounded grow min-w-[25em]">
             <strong>test</strong>
             <ul>
                 {
                     props.feed.items.map((f, i) => (
-                        <li key={i}><a href={f.link} className="p-2">{f.title}</a></li>
+                        <li key={ i }><a href={ f.link } className="p-2">{ f.title }</a></li>
                     ))
                 }
             </ul>
