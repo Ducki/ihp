@@ -1,6 +1,6 @@
 namespace backend.Model
 {
-    public partial class Feed
+    public class Feed
     {
         public int Id { get; set; }
         public string Uri { get; set; } = null!;
