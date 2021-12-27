@@ -1,17 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
-using System.Web;
-using System.Xml;
-using backend.Model;
 
-namespace iHomepage.Models
-{
-    public class FeedManager
+namespace backend.Model;
+
+public class FeedManager
     {
         //iHomepageEntities context;
 
@@ -24,6 +15,9 @@ namespace iHomepage.Models
         /// Returns a list of SyndicationFeed objects of all feeds in database
         /// </summary>
         /// <returns>List<SyndicationFeed></returns>
+        ///
+        
+        ///
         public List<SyndicationFeed> GetAllFeeds()
         {
             throw new NotImplementedException();
@@ -70,4 +64,3 @@ namespace iHomepage.Models
         //     return feeds;
         // }
     }
-}
