@@ -28,7 +28,7 @@ namespace backend
             return Urls!;
         }
 
-        private async Task<IEnumerable<SyndicationItem>> DownloadFeedAsync(string url)
+        private async Task<IEnumerable<LightSyndicationItem>> DownloadFeedAsync(string url)
         {
             System.Console.WriteLine("hi");
             var u = new Uri(url);
@@ -37,12 +37,24 @@ namespace backend
             SyndicationFeed sfeed = SyndicationFeed.Load(xmlreader);
 
             var items = sfeed.Items.Take(5);
-            return items;
+
+            var foo = items.Select(i =>
+            {
+                return new LightSyndicationItem()
+                {
+                    Title = i.Title.Text,
+                    PublishDate = i.PublishDate.DateTime,
+                    Summary = i.Summary.Text,
+                    Url = i.Links.First().Uri.ToString()
+                };
+            });
+
+            return foo;
         }
 
-        public async Task<IEnumerable<SyndicationItem>> HandleAsync()
+        public async Task<IEnumerable<LightSyndicationItem>> HandleAsync()
         {
-            return await DownloadFeedAsync(Urls.First().url);
+            return await DownloadFeedAsync(Urls!.First().url);
 
         }
     }

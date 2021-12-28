@@ -8,6 +8,13 @@ export type TFeed = {
     }[]
 }
 
+export interface LightSyndicationItem {
+    title: string;
+    url: string;
+    summary: string;
+    publishDate: string;
+}
+
 export function getFeeds() {
     const sources = urls as TFeed[]
     return sources
