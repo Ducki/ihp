@@ -15,6 +15,14 @@ export interface LightSyndicationItem {
     publishDate: string;
 }
 
+export interface LightSyndicationFeed {
+    feed: LightSyndicationItem[];
+}
+
+export interface FeedCollection {
+    siteFeeds: LightSyndicationFeed[];
+}
+
 export function getFeeds() {
     const sources = urls as TFeed[]
     return sources
