@@ -56,12 +56,12 @@ namespace backend
                 var downloadedItem = await DownloadFeedAsync(url.url);
                 feeds.Add(downloadedItem);
             }
-            
+
             var feed = new FeedCollection()
             {
                 SiteFeeds = feeds
             };
-            
+
             return feed;
         }
 

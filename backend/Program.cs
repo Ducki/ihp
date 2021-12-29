@@ -1,17 +1,7 @@
 using backend;
+var app = WebApplication.Create();
 
-var builder = WebApplication.CreateBuilder(args);
+app.UseStaticFiles();
 
-
-
-
-var app = builder.Build();
-
-
-app.UseFileServer(enableDirectoryBrowsing: true);
-
-// app.UseStaticFiles();
-// app.UseDirectoryBrowser();
-
-app.MapGet("/", () => new DummyRunner().HandleAsync());
+app.MapGet("/api", () => new DummyRunner().HandleAsync());
 app.Run();
