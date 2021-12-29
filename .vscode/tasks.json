@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/backend.csproj",
+                "${workspaceFolder}/backend/backend.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/backend.csproj",
+                "${workspaceFolder}/backend/backend.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/backend.csproj",
+                "${workspaceFolder}/backend/backend.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -45,14 +45,14 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "backend:dev",
+                "tag": "ihp:dev",
                 "target": "base",
-                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "dockerfile": "${workspaceFolder}/backend/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/backend.csproj"
+                "appProject": "${workspaceFolder}/backend/backend.csproj"
             }
         },
         {
@@ -62,13 +62,13 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "backend:latest",
-                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "tag": "ihp:latest",
+                "dockerfile": "${workspaceFolder}/backend/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/backend.csproj"
+                "appProject": "${workspaceFolder}/backend/backend.csproj"
             }
         },
         {
@@ -79,7 +79,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/backend.csproj",
+                "appProject": "${workspaceFolder}/backend/backend.csproj",
                 "enableDebugging": true
             }
         },
@@ -91,7 +91,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/backend.csproj"
+                "appProject": "${workspaceFolder}/backend/backend.csproj"
             }
         }
     ]
