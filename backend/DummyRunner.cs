@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using System.ServiceModel.Syndication;
 using System.Text.Json;
 using System.Xml;
@@ -30,8 +31,8 @@ namespace backend
             Console.WriteLine("hi");
             var u = new Uri(url);
             var response = await new HttpClient().GetStreamAsync(u);
-            XmlReader xmlreader = XmlReader.Create(response);
-            SyndicationFeed sfeed = SyndicationFeed.Load(xmlreader);
+            var xmlreader = XmlReader.Create(response);
+            var sfeed = SyndicationFeed.Load(xmlreader);
 
             var items = sfeed.Items.Take(5);
 
@@ -48,16 +49,19 @@ namespace backend
 
         private async Task<FeedCollection> GetSiteFeeds()
         {
-            //var result = Urls!.Select(u => DownloadFeedAsync(u.url));
-
-            var feed = new FeedCollection();
+            var feeds = new List<LightSyndicationFeed>();
 
             foreach (var url in Urls!)
             {
                 var downloadedItem = await DownloadFeedAsync(url.url);
-                feed.SiteFeeds.Add(downloadedItem);
+                feeds.Add(downloadedItem);
             }
-
+            
+            var feed = new FeedCollection()
+            {
+                SiteFeeds = feeds
+            };
+            
             return feed;
         }
 
