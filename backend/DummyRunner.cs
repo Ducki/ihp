@@ -18,9 +18,6 @@ namespace backend
             {
                 throw new Exception();
             }
-
-
-
         }
 
         public List<TUrl> GetUrls()
@@ -28,9 +25,9 @@ namespace backend
             return Urls!;
         }
 
-        private async Task<IEnumerable<LightSyndicationItem>> DownloadFeedAsync(string url)
+        private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
         {
-            System.Console.WriteLine("hi");
+            Console.WriteLine("hi");
             var u = new Uri(url);
             var response = await new HttpClient().GetStreamAsync(u);
             XmlReader xmlreader = XmlReader.Create(response);
@@ -38,24 +35,35 @@ namespace backend
 
             var items = sfeed.Items.Take(5);
 
-            var foo = items.Select(i =>
+            var feed = items.Select(i => new LightSyndicationItem()
             {
-                return new LightSyndicationItem()
-                {
-                    Title = i.Title.Text,
-                    PublishDate = i.PublishDate.DateTime,
-                    Summary = i.Summary.Text,
-                    Url = i.Links.First().Uri.ToString()
-                };
+                Title = i.Title.Text,
+                PublishDate = i.PublishDate.DateTime,
+                Summary = i.Summary.Text,
+                Url = i.Links.First().Uri.ToString()
             });
-
-            return foo;
+            var foo = feed.ToList();
+            return new LightSyndicationFeed() { Feed = foo };
         }
 
-        public async Task<IEnumerable<LightSyndicationItem>> HandleAsync()
+        private async Task<FeedCollection> GetSiteFeeds()
         {
-            return await DownloadFeedAsync(Urls!.First().url);
+            //var result = Urls!.Select(u => DownloadFeedAsync(u.url));
 
+            var feed = new FeedCollection();
+
+            foreach (var url in Urls!)
+            {
+                var downloadedItem = await DownloadFeedAsync(url.url);
+                feed.SiteFeeds.Add(downloadedItem);
+            }
+
+            return feed;
+        }
+
+        public async Task<FeedCollection> HandleAsync()
+        {
+            return await GetSiteFeeds();
         }
     }
 }

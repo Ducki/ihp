@@ -12,4 +12,14 @@ namespace backend
         public string Summary { get; set; } = null!;
         public DateTime PublishDate { get; set; }
     }
+
+    public class LightSyndicationFeed
+    {
+        public List<LightSyndicationItem> Feed { get; set; } = null!;
+    }
+
+    public class FeedCollection
+    {
+        public List<LightSyndicationFeed> SiteFeeds { get; set; } = null!;
+    }
 }
