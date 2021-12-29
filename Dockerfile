@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.1-alpine3.14-amd64 AS base
 WORKDIR /app
 EXPOSE 5000
 
