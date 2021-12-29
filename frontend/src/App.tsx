@@ -17,6 +17,9 @@ function App() {
 
     return (
         <div>
+            <h1 className='text-center font-bold mb-2 dark:text-stone-200'>My Homepage</h1>
+            <p className="text-center text-xs text-gray-400">Letztes Update { lasteUpdated.toLocaleTimeString() } Uhr</p>
+            <hr className='dark:border-stone-600' />
             <div className="flex flex-wrap justify-evenly">
 
                 { feeds
@@ -27,7 +30,7 @@ function App() {
                 }
 
             </div>
-            <p className="mt-10 text-center text-xs">Last Update { lasteUpdated.toLocaleTimeString() }</p>
+
         </div>
     );
 }
