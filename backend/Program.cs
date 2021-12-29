@@ -8,9 +8,9 @@ var app = builder.Build();
 app.UseCors(c => c.AllowAnyOrigin());
 
 // Only for debugging:
-app.UseFileServer(enableDirectoryBrowsing: true);
-// app.UseStaticFiles();
-// app.UseDirectoryBrowser();
+//app.UseFileServer(enableDirectoryBrowsing: true);
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapGet("/api", () => new DummyRunner().HandleAsync());
 app.Run();

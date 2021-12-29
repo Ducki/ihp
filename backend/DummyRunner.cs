@@ -50,15 +50,19 @@ namespace backend
             };
         }
 
-        private async Task<FeedCollection> GetSiteFeeds()
+        private FeedCollection GetSiteFeeds()
         {
             var feeds = new List<LightSyndicationFeed>();
 
+            List<Task<LightSyndicationFeed>> downloadJobs = new();
+
             foreach (var url in Urls!)
             {
-                var downloadedItem = await DownloadFeedAsync(url.url);
-                feeds.Add(downloadedItem);
+                downloadJobs.Add(DownloadFeedAsync(url.url));
             }
+
+            Task.WaitAll(downloadJobs.ToArray());
+            feeds = downloadJobs.Select(d => d.Result).ToList();
 
             var feed = new FeedCollection()
             {
@@ -68,9 +72,9 @@ namespace backend
             return feed;
         }
 
-        public async Task<FeedCollection> HandleAsync()
+        public FeedCollection HandleAsync()
         {
-            return await GetSiteFeeds();
+            return GetSiteFeeds();
         }
     }
 }
