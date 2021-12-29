@@ -9,13 +9,32 @@ ENV ASPNETCORE_URLS=http://+:5000
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
+
+#####
+FROM node:lts-alpine as npmbuild
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
+COPY . .
+EXPOSE 3000
+RUN chown -R node /usr/src/app
+USER node
+CMD ["npm", "build"]
+
+####
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
 COPY ["backend.csproj", "./"]
 RUN dotnet restore "backend.csproj"
 COPY . .
+# copy frontend stuff
+COPY --from=npmbuild /usr/src/app/build wwwroot/
+# go on with rest
 WORKDIR "/src/."
 RUN dotnet build "backend.csproj" -c Release -o /app/build
+
 
 FROM build AS publish
 RUN dotnet publish "backend.csproj" -c Release -o /app/publish
