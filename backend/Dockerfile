@@ -11,19 +11,9 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
-
-#frontend
-COPY ["frontend/", "frontend/"]
-WORKDIR /scr/frontend
-RUN npm install
-RUN npm run build
-COPY --from=build frontend/build /src/backend/wwwroot
-
-
-#backend
-COPY ["backend/backend.csproj", "./"]
+COPY ["backend.csproj", "./"]
 RUN dotnet restore "backend.csproj"
-COPY backend/ .
+COPY . .
 WORKDIR "/src/."
 RUN dotnet build "backend.csproj" -c Release -o /app/build
 
