@@ -6,6 +6,7 @@ import Feed from "./components/Feed";
 function App() {
 
     const [feeds, setFeeds] = useState<FeedCollection | null>(null)
+    const [lasteUpdated, setLastUpdated] = useState(new Date())
 
     useEffect(() => {
         (async () => {
@@ -16,7 +17,7 @@ function App() {
 
     return (
         <div>
-            <div className="flex flex-wrap justify-between">
+            <div className="flex flex-wrap justify-evenly">
 
                 { feeds
                     ? (
@@ -26,7 +27,7 @@ function App() {
                 }
 
             </div>
-
+            <p className="mt-10 text-center text-xs">Last Update { lasteUpdated.toLocaleTimeString() }</p>
         </div>
     );
 }

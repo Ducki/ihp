@@ -28,13 +28,12 @@ namespace backend
 
         private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
         {
-            Console.WriteLine("hi");
             var u = new Uri(url);
             var response = await new HttpClient().GetStreamAsync(u);
             var xmlreader = XmlReader.Create(response);
             var sfeed = SyndicationFeed.Load(xmlreader);
 
-            var items = sfeed.Items.Take(5);
+            var items = sfeed.Items.Take(8);
 
             var feed = items.Select(i => new LightSyndicationItem()
             {
