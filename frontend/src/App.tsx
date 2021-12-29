@@ -8,7 +8,9 @@ function App() {
     const [feeds, setFeeds] = useState<TFeed[] | null>(null)
 
     useEffect(() => {
-        setFeeds(getFeeds())
+        //setFeeds(getFeeds())
+
+        getFeeds();
     }, [])
 
 

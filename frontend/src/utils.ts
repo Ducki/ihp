@@ -23,7 +23,11 @@ export interface FeedCollection {
     siteFeeds: LightSyndicationFeed[];
 }
 
-export function getFeeds() {
+export async function getFeeds() {
+
+    const result = await fetch("http://localhost:5000/api").then(result => result.json());
+    console.log(result);
+
     const sources = urls as TFeed[]
     return sources
 }
