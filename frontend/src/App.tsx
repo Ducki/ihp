@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { getFeeds, TFeed } from "./utils";
+import { FeedCollection, getFeeds, TFeed } from "./utils";
 import Feed from "./components/Feed";
 
 function App() {
 
-    const [feeds, setFeeds] = useState<TFeed[] | null>(null)
+    const [feeds, setFeeds] = useState<FeedCollection | null>(null)
 
     useEffect(() => {
-        //setFeeds(getFeeds())
-
-        getFeeds();
+        (async () => {
+            setFeeds(await getFeeds())
+        })()
     }, [])
 
 
@@ -20,7 +20,7 @@ function App() {
 
                 { feeds
                     ? (
-                        feeds.map((f, i) => <Feed key={ i } feed={ f } />)
+                        feeds.siteFeeds.map((f, i) => <Feed key={ i } feed={ f.feed } />)
                     )
                     : "Loading …"
                 }

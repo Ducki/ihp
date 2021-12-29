@@ -25,9 +25,7 @@ export interface FeedCollection {
 
 export async function getFeeds() {
 
-    const result = await fetch("http://localhost:5000/api").then(result => result.json());
-    console.log(result);
+    const result: FeedCollection = await fetch("http://localhost:5000/api").then(result => result.json());
 
-    const sources = urls as TFeed[]
-    return sources
+    return result;
 }
