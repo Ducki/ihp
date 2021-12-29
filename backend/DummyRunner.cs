@@ -43,8 +43,12 @@ namespace backend
                 Summary = i.Summary.Text,
                 Url = i.Links.First().Uri.ToString()
             });
-            var foo = feed.ToList();
-            return new LightSyndicationFeed() { Feed = foo };
+
+            return new LightSyndicationFeed()
+            {
+                FeedItems = feed.ToList(),
+                SiteName = sfeed.Title.Text
+            };
         }
 
         private async Task<FeedCollection> GetSiteFeeds()

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { FeedCollection, getFeeds, TFeed } from "./utils";
+import { FeedCollection, getFeeds } from "./utils";
 import Feed from "./components/Feed";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
                 { feeds
                     ? (
-                        feeds.siteFeeds.map((f, i) => <Feed key={ i } feed={ f.feed } />)
+                        feeds.siteFeeds.map((f, i) => <Feed key={ i } feed={ f } />)
                     )
                     : "Loading …"
                 }

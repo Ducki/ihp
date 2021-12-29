@@ -1,15 +1,19 @@
 import React from 'react';
-import { LightSyndicationFeed } from "../utils";
+import { getFormattedDate, LightSyndicationFeed } from "../utils";
 
-function Feed(props: LightSyndicationFeed) {
+function Feed(props: { feed: LightSyndicationFeed }) {
+
 
     return (
         <div className="m-3 p-3 border rounded grow min-w-[25em]">
-            <strong>test</strong>
+            <strong>{props.feed.siteName}</strong>
             <ul>
                 {
-                    props.feed.map((f, i) => (
-                        <li key={ i }><a href={ f.url } className="p-2">{ f.title }</a></li>
+                    props.feed.feedItems.map((f, i) => (
+                        <li key={i}>
+                            <em>{getFormattedDate(f.publishDate)}</em>
+                            <a href={f.url} className="p-2">{f.title}</a>
+                        </li>
                     ))
                 }
             </ul>

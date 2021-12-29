@@ -15,7 +15,8 @@ namespace backend
 
     public class LightSyndicationFeed
     {
-        public List<LightSyndicationItem> Feed { get; set; } = null!;
+        public string SiteName { get; set; } = null!;
+        public List<LightSyndicationItem> FeedItems { get; set; } = null!;
     }
 
     public class FeedCollection
