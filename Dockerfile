@@ -11,11 +11,13 @@ USER appuser
 
 
 #####
-FROM node:lts-alpine as npmbuild
+FROM node:lts-alpine as npminstall
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
 COPY frontend/ .
-RUN npm install && npm run build
+RUN npm install
+FROM npminstall as npmbuild
+RUN npm run build
 
 ####
 
