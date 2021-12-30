@@ -32,7 +32,13 @@ export async function getFeeds() {
         return value
     }
 
-    const rawResult = await fetch("/api").then(result => result.text())
+    let rawResult
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        rawResult = await fetch("http://localhost:5000/api").then(result => result.text())
+    } else {
+        rawResult = await fetch("/api").then(result => result.text())
+    }
+
     const parsedJson: FeedCollection = JSON.parse(rawResult, reviver)
 
     return parsedJson

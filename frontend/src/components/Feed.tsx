@@ -5,7 +5,7 @@ function Feed(props: { feed: LightSyndicationFeed }) {
 
 
     return (
-        <div className="m-3 p-3 border dark:border-stone-700 rounded grow min-w-[25em] max-w-xl text-sm">
+        <div className="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow min-w-[15em] max-w-xl text-sm">
             <strong className='dark:text-stone-400'>{ props.feed.siteName }</strong>
             <ul>
                 {
