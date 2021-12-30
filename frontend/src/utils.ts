@@ -23,6 +23,7 @@ export interface FeedCollection {
 }
 
 export async function getFeeds() {
+    console.log("Downloading new feeds");
 
     function reviver(key: any, value: any) {
         const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/;
