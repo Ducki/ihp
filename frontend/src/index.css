@@ -9,7 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @apply dark:bg-stone-900 dark:text-gray-50;
+  @apply bg-stone-50 dark:bg-stone-900 dark:text-gray-50;
 }
 
 code {
