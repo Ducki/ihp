@@ -18,13 +18,13 @@ code {
 }
 
 a:link {
-@apply text-blue-900 no-underline dark:text-blue-400;
+@apply text-blue-900 no-underline dark:text-amber-500;
 }
 a:visited {
-@apply text-blue-300 no-underline dark:text-blue-800;
+@apply text-blue-300 no-underline dark:text-amber-900;
 }
 a:hover {
-@apply text-blue-700 underline dark:text-blue-300;
+@apply text-blue-700 underline dark:text-orange-200;
 }
 a:active {
 
