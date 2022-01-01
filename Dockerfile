@@ -34,7 +34,7 @@ RUN dotnet build "backend.csproj" -c Release -o /app/build
 
 
 FROM build AS publish
-RUN dotnet publish "backend.csproj" -c Release -o /app/publish
+RUN dotnet publish "backend.csproj" -c Release -o /app/publish -p:PublishReadyToRun=true
 
 FROM base AS final
 WORKDIR /app
