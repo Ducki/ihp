@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using System.ServiceModel.Syndication;
 using System.Text.Json;
 using System.Xml;
@@ -7,15 +6,15 @@ namespace backend
 {
     public class DummyRunner
     {
-        private readonly List<TUrl>? Urls;
+        private readonly List<TUrl>? _urls;
 
         public DummyRunner()
         {
             var fileContent = File.ReadAllText("dummy-data.json");
 
-            Urls = JsonSerializer.Deserialize<List<TUrl>>(fileContent);
+            _urls = JsonSerializer.Deserialize<List<TUrl>>(fileContent);
 
-            if (Urls is null)
+            if (_urls is null)
             {
                 throw new Exception();
             }
@@ -23,13 +22,24 @@ namespace backend
 
         public List<TUrl> GetUrls()
         {
-            return Urls!;
+            return _urls!;
         }
 
         private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
         {
             var u = new Uri(url);
-            var response = await new HttpClient().GetStreamAsync(u);
+
+            Stream response;
+            try
+            {
+                response = await new HttpClient().GetStreamAsync(u);
+            }
+            catch (Exception e)
+            {
+                // Try again …
+                Console.WriteLine(e);
+                response = await new HttpClient().GetStreamAsync(u);
+            }
             var xmlreader = XmlReader.Create(response);
             var sfeed = SyndicationFeed.Load(xmlreader);
 
@@ -52,17 +62,15 @@ namespace backend
 
         private FeedCollection GetSiteFeeds()
         {
-            var feeds = new List<LightSyndicationFeed>();
-
             List<Task<LightSyndicationFeed>> downloadJobs = new();
 
-            foreach (var url in Urls!)
+            foreach (var url in _urls!)
             {
                 downloadJobs.Add(DownloadFeedAsync(url.url));
             }
 
             Task.WaitAll(downloadJobs.ToArray());
-            feeds = downloadJobs.Select(d => d.Result).ToList();
+            var feeds = downloadJobs.Select(d => d.Result).ToList();
 
             var feed = new FeedCollection()
             {
