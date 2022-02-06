@@ -30,8 +30,7 @@ COPY backend/ .
 COPY --from=npmbuild /usr/src/app/build wwwroot/
 # go on with rest
 WORKDIR "/src/."
-RUN dotnet build "backend.csproj" -c Release -o /app/build
-
+#RUN dotnet build "backend.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "backend.csproj" -c Release -o /app/publish
