@@ -17,7 +17,6 @@ namespace backend
     {
         public string SiteName { get; set; } = null!;
         public List<LightSyndicationItem> FeedItems { get; set; } = null!;
-        public string Url { get; set; } = null!;
     }
 
     public class FeedCollection
