@@ -6,7 +6,7 @@ function Feed(props: { feed: LightSyndicationFeed }) {
 
     return (
         <div className="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow  max-w-xl text-sm truncate">
-            <strong className='dark:text-stone-400'>{ props.feed.siteName }</strong>
+            <strong className='dark:text-stone-400'><a href={ props.feed.url }>{ props.feed.siteName }</a></strong>
             <ul>
                 {
                     props.feed.feedItems.map((f, i) => (

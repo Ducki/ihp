@@ -2,9 +2,11 @@
 **/.dockerignore
 **/.env
 **/.git
+**/.idea
 **/.gitignore
 **/.project
 **/.settings
+**/.DS_Store
 **/.toolstarget
 **/.vs
 **/.vscode
@@ -22,3 +24,5 @@
 **/secrets.dev.yaml
 **/values.dev.yaml
 README.md
+html-template
+frontend/build

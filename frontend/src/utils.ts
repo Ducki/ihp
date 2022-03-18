@@ -15,6 +15,7 @@ export interface LightSyndicationItem {
 
 export interface LightSyndicationFeed {
     siteName: string;
+    url: string;
     feedItems: LightSyndicationItem[];
 }
 

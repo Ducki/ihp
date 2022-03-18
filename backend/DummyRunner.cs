@@ -56,7 +56,8 @@ namespace backend
             return new LightSyndicationFeed()
             {
                 FeedItems = feed.ToList(),
-                SiteName = sfeed.Title.Text
+                SiteName = sfeed.Title.Text,
+                Url = sfeed.BaseUri.ToString()
             };
         }
 
